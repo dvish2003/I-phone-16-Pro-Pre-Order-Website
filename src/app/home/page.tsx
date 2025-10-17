@@ -8,8 +8,7 @@ const Home = () => {
   const contentRef = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
-
-    // this for use to scroll animtion 
+    // Scroll animation
     const handleScroll = () => {
       const scrolled = window.pageYOffset;
       const rate = scrolled * -0.5;
@@ -38,8 +37,8 @@ const Home = () => {
   }, []);
 
   return (
-    <section className="min-h-screen bg-black flex items-center justify-center p-4 relative overflow-hidden">
-      <div className="absolute inset-0 bg-gradient-to-br from-black via-rose-950/20 to-orange-300/10 z-0 animate-pulse"></div>
+    <section className="min-h-screen bg-black flex items-center justify-center p-4 relative overflow-hidden top-10 md:top-15">
+      <div className="absolute inset-0 bg-gradient-to-br from-black via-rose-950/20 to-orange-300/10 z-0"></div>
 
       <div
         ref={proTextRef}
@@ -53,8 +52,8 @@ const Home = () => {
       <div className="flex flex-col lg:flex-row items-center justify-between w-full max-w-7xl relative z-20 mt-16 lg:mt-0">
         <div className="relative lg:w-1/2 flex justify-center mb-8 lg:mb-0">
           <div className="absolute inset-0 flex items-center justify-center">
-            <div className="w-72 h-72 md:w-96 md:h-96 lg:w-[500px] lg:h-[500px] bg-rose-500/10 rounded-full blur-3xl animate-pulse-slow"></div>
-            <div className="absolute w-64 h-64 md:w-80 md:h-80 lg:w-[450px] lg:h-[450px] bg-rose-400/5 rounded-full blur-2xl animate-pulse"></div>
+            <div className="w-72 h-72 md:w-96 md:h-96 lg:w-[500px] lg:h-[500px] bg-rose-500/10 rounded-full blur-3xl animate-pulse"></div>
+            <div className="absolute w-64 h-64 md:w-80 md:h-80 lg:w-[450px] lg:h-[450px] bg-rose-400/5 rounded-full blur-2xl animate-pulse-slow"></div>
           </div>
 
           <div
@@ -62,14 +61,21 @@ const Home = () => {
             className="relative z-30 transform transition-transform duration-700 hover:scale-105"
             style={{ transformStyle: "preserve-3d" }}
           >
-            <Image
-              src={"/image/iphone-rose-br_1.png"}
-              width={600}
-              height={600}
-              alt="iPhone 16 Pro"
-              className="w-full max-w-xs sm:max-w-sm md:max-w-md lg:max-w-lg xl:max-w-xl drop-shadow-2xl transition-all duration-500"
-              priority
-            />
+            <div className="relative">
+              <Image
+                src={"/image/iphone-rose-br_1.png"}
+                width={600}
+                height={600}
+                alt="iPhone 16 Pro"
+                className="w-full max-w-xs sm:max-w-sm md:max-w-md lg:max-w-lg xl:max-w-xl drop-shadow-2xl transition-all duration-500"
+                priority
+                style={{
+                  filter: 'brightness(1.1) contrast(1.1)',
+                  WebkitFilter: 'brightness(1.1) contrast(1.1)'
+                }}
+              />
+              <div className="absolute inset-0 bg-gradient-to-br from-rose-500/5 to-orange-300/5 mix-blend-overlay pointer-events-none"></div>
+            </div>
           </div>
         </div>
 
@@ -77,8 +83,8 @@ const Home = () => {
           ref={contentRef}
           className="lg:w-1/2 text-center lg:text-left space-y-6 lg:space-y-8 px-4 lg:px-8 flex flex-col justify-center animate-fade-in-up"
         >
-          <div className="bg-gradient-to-b from-white via-rose-200 to-orange-300 bg-clip-text text-transparent mb-6 lg:mb-8">
-            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold animate-slide-in-left">
+          <div className="bg-gradient-to-b from-black/40 via-rose-600 to-orange-100 bg-clip-text text-transparent mb-6 lg:mb-8">
+            <h1 className="text-3xl sm:text-4xl md:text-4xl lg:text-4xl font-bold animate-slide-in-left">
               iPhone 16 Pro
             </h1>
           </div>
@@ -130,7 +136,7 @@ const Home = () => {
               </p>
 
               <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center lg:justify-start">
-                <button className="bg-gradient-to-r from-rose-500 to-orange-400 hover:from-rose-600 hover:to-orange-500 text-white font-semibold px-6 py-3 sm:px-8 sm:py-4 rounded-full transition-all duration-300 hover:scale-105 shadow-lg hover:shadow-rose-500/25 animate-pulse-slow">
+                <button className="bg-gradient-to-r from-rose-500 to-orange-400 hover:from-rose-600 hover:to-orange-500 text-white font-semibold px-6 py-3 sm:px-8 sm:py-4 rounded-full transition-all duration-300 hover:scale-105 shadow-lg hover:shadow-rose-500/25">
                   Pre-order Now
                 </button>
                 <button className="border border-white/30 hover:border-white/50 text-white font-medium px-6 py-3 sm:px-8 sm:py-4 rounded-full transition-all duration-300 hover:scale-105 backdrop-blur-sm">
@@ -165,6 +171,7 @@ const Home = () => {
         </div>
       </div>
 
+      {/* Bottom gradient overlay */}
       <div className="absolute bottom-0 left-0 w-full h-20 sm:h-24 lg:h-32 bg-gradient-to-t from-black to-transparent z-0"></div>
 
       <style jsx>{`
@@ -209,6 +216,14 @@ const Home = () => {
             background-position: 0% 50%;
           }
         }
+        @keyframes pulse-slow {
+          0%, 100% {
+            opacity: 0.5;
+          }
+          50% {
+            opacity: 0.8;
+          }
+        }
         .animate-fade-in-up {
           animation: fadeInUp 0.8s ease-out;
         }
@@ -225,6 +240,9 @@ const Home = () => {
           background-size: 200% 200%;
           animation: gradient 3s ease infinite;
         }
+        .animate-pulse-slow {
+          animation: pulse-slow 3s ease-in-out infinite;
+        }
         .delay-300 {
           animation-delay: 300ms;
         }
@@ -233,6 +251,23 @@ const Home = () => {
         }
         .delay-700 {
           animation-delay: 700ms;
+        }
+        
+        /* Mobile responsiveness improvements */
+        @media (max-width: 640px) {
+          .text-3xl {
+            font-size: 1.875rem;
+            line-height: 2.25rem;
+          }
+          .space-y-6 > * + * {
+            margin-top: 1rem;
+          }
+        }
+        
+        @media (max-width: 768px) {
+          .max-w-xs {
+            max-width: 20rem;
+          }
         }
       `}</style>
     </section>
