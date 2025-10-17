@@ -3,13 +3,13 @@ pipeline {
     stages {
         stage('Checkout Code') {
             steps {
-                git branch: 'main', url: 'https://github.com/dvish2003/Botanica---Nature-Portfolio.git'
+                git branch: 'main', url: 'https://github.com/dvish2003/I-phone-16-Pro-Pre-Order-Website.git'
             }
         }
         stage('Build Docker Image') {
             steps {
                 script {
-                    sh 'docker build -t dvish2003/botanica-nature-portfolio:${BUILD_NUMBER} .'                }
+                    sh 'docker build -t dvish2003/iphone-16-preoder:${BUILD_NUMBER} .'                }
             }
         }
         stage('Login to Docker Hub') {
@@ -24,7 +24,7 @@ pipeline {
         stage('Push to Docker Hub') {
             steps {
                 script {
-                    sh "docker push dvish2003/botanica-nature-portfolio:${BUILD_NUMBER}"
+                    sh "docker push dvish2003/iphone-16-preoder:${BUILD_NUMBER}"
                 }
             }
         }
