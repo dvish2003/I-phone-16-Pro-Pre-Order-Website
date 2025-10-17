@@ -74,7 +74,7 @@ const Home = () => {
                   WebkitFilter: 'brightness(1.1) contrast(1.1)'
                 }}
               />
-              <div className="absolute inset-0 bg-gradient-to-br from-rose-500/5 to-orange-300/5 mix-blend-overlay pointer-events-none"></div>
+              <div className="absolute inset-0  pointer-events-none"></div>
             </div>
           </div>
         </div>
