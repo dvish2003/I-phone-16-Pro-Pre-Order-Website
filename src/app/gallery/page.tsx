@@ -10,9 +10,9 @@ const Gallery = () => {
 
   return (
     <section id="gallery" className="py-32 relative overflow-hidden" ref={ref}>
-      <div className="absolute inset-0 bg-gradient-to-br from-background via-background to-muted/5" />
-      <div className="absolute top-1/4 -right-20 w-96 h-96 bg-primary/5 rounded-full blur-3xl" />
-      <div className="absolute bottom-1/4 -left-20 w-96 h-96 bg-secondary/5 rounded-full blur-3xl" />
+      <div className="absolute inset-0 gallery-bg" />
+      <div className="absolute top-1/4 -right-20 w-96 h-96 gallery-orb-1" />
+      <div className="absolute bottom-1/4 -left-20 w-96 h-96 gallery-orb-2" />
 
       <div className="container mx-auto px-6 relative z-10">
         <motion.div
@@ -29,7 +29,7 @@ const Gallery = () => {
           >
             Liquid Glass
             <br />
-            <span className="bg-gradient-to-r from-foreground to-muted-foreground bg-clip-text text-transparent">
+            <span className="gallery-title-gradient">
               Display
             </span>
           </motion.h2>
@@ -51,7 +51,7 @@ const Gallery = () => {
             transition={{ duration: 0.8, delay: 0.6 }}
             whileHover={{ y: -10 }}
           >
-            <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-10" />
+            <div className="absolute inset-0 gallery-overlay opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-10" />
             <motion.div
               initial={{ opacity: 0, scale: 1.1 }}
               animate={
@@ -77,7 +77,7 @@ const Gallery = () => {
               transition={{ duration: 0.8, delay: 0.7 }}
               whileHover={{ y: -5 }}
             >
-              <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-10" />
+              <div className="absolute inset-0 gallery-overlay opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-10" />
               <motion.div
                 initial={{ opacity: 0, scale: 1.1 }}
                 animate={
@@ -107,7 +107,7 @@ const Gallery = () => {
                 transition={{ duration: 0.8, delay: 0.8 }}
                 whileHover={{ y: -5 }}
               >
-                <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-10" />
+                <div className="absolute inset-0 gallery-overlay opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-10" />
                 <motion.div
                   initial={{ opacity: 0, scale: 1.1 }}
                   animate={
@@ -136,7 +136,7 @@ const Gallery = () => {
                 transition={{ duration: 0.8, delay: 0.9 }}
                 whileHover={{ y: -5 }}
               >
-                <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-10" />
+                <div className="absolute inset-0 gallery-overlay opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-10" />
                 <motion.div
                   initial={{ opacity: 0, scale: 1.1 }}
                   animate={
@@ -160,7 +160,7 @@ const Gallery = () => {
         </div>
 
         <motion.div
-          className="absolute top-40 -left-10 w-20 h-20 bg-primary/10 rounded-full blur-xl"
+          className="absolute top-40 -left-10 w-20 h-20 gallery-orb-small-1"
           animate={{
             y: [0, -20, 0],
             opacity: [0.5, 0.8, 0.5],
@@ -172,7 +172,7 @@ const Gallery = () => {
           }}
         />
         <motion.div
-          className="absolute bottom-40 -right-10 w-16 h-16 bg-secondary/10 rounded-full blur-xl"
+          className="absolute bottom-40 -right-10 w-16 h-16 gallery-orb-small-2"
           animate={{
             y: [0, 20, 0],
             opacity: [0.5, 0.8, 0.5],
@@ -185,6 +185,47 @@ const Gallery = () => {
           }}
         />
       </div>
+
+      <style jsx global>{`
+        .gallery-bg {
+          background: linear-gradient(135deg, #000000, #000000, #0a0a0a08);
+        }
+        
+        .gallery-orb-1 {
+          background: #f43f5e0d;
+          border-radius: 50%;
+          filter: blur(48px);
+        }
+        
+        .gallery-orb-2 {
+          background: #3b82f60d;
+          border-radius: 50%;
+          filter: blur(48px);
+        }
+        
+        .gallery-title-gradient {
+          background: linear-gradient(to right, #ffffff, #6b7280);
+          -webkit-background-clip: text;
+          background-clip: text;
+          color: transparent;
+        }
+        
+        .gallery-overlay {
+          background: linear-gradient(to top, #00000033, transparent);
+        }
+        
+        .gallery-orb-small-1 {
+          background: #f43f5e1a;
+          border-radius: 50%;
+          filter: blur(16px);
+        }
+        
+        .gallery-orb-small-2 {
+          background: #3b82f61a;
+          border-radius: 50%;
+          filter: blur(16px);
+        }
+      `}</style>
     </section>
   );
 };

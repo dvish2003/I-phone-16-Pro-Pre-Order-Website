@@ -11,7 +11,7 @@ const Feature = () => {
       title: "Aerospace-Grade Titanium",
       description: "Crafted from the same alloy used in spacecraft, offering unparalleled strength-to-weight ratio.",
       features: ["Lightweight yet incredibly durable", "Corrosion resistant", "Premium matte finish"],
-      gradient: "from-blue-500 to-cyan-400"
+      gradientClass: "feature-gradient-1"
     },
     {
       image: "/image/iPhone 16.jpeg",
@@ -19,7 +19,7 @@ const Feature = () => {
       title: "Revolutionary Design",
       description: "The thinnest and lightest Pro model ever, with an all-new contoured edge design.",
       features: ["Ergonomic contoured edges", "Thinnest bezels in smartphone history", "Four stunning finishes"],
-      gradient: "from-purple-500 to-pink-500",
+      gradientClass: "feature-gradient-2",
       reverse: true
     },
     {
@@ -28,7 +28,7 @@ const Feature = () => {
       title: "Apple Intelligence",
       description: "The most personal and powerful AI system, integrated throughout your iPhone.",
       features: ["On-device processing", "Contextual awareness", "Personalized assistance"],
-      gradient: "from-green-500 to-emerald-400"
+      gradientClass: "feature-gradient-3"
     },
     {
       image: "/image/_.jpeg",
@@ -36,7 +36,7 @@ const Feature = () => {
       title: "A18 Pro Chip",
       description: "The most powerful chip ever in a smartphone, with breakthrough performance and efficiency.",
       features: ["6-core GPU for pro graphics", "16-core Neural Engine", "Industry-leading efficiency"],
-      gradient: "from-orange-500 to-red-500",
+      gradientClass: "feature-gradient-4",
       reverse: true
     },
     {
@@ -45,7 +45,7 @@ const Feature = () => {
       title: "Pro Camera System",
       description: "Our most advanced camera system with computational photography breakthroughs.",
       features: ["48MP Main camera", "5x Telephoto zoom", "Photonic Engine"],
-      gradient: "from-gray-700 to-gray-500"
+      gradientClass: "feature-gradient-5"
     }
   ];
 
@@ -64,7 +64,7 @@ const Feature = () => {
           transition={{ duration: 1, delay: 0.5 }}
           className="absolute -top-20 -left-20 w-40 h-40"
         />
-        <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold mb-6 bg-gradient-to-r from-white via-rose-100 to-orange-200 bg-clip-text text-transparent">
+        <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold mb-6 feature-main-title">
           Engineered for
           <br /> Excellence
         </h1>
@@ -91,7 +91,7 @@ const Feature = () => {
                 transition={{ duration: 0.4 }}
                 className="relative group"
               >
-                <div className={`absolute inset-0 bg-gradient-to-r ${feature.gradient} rounded-3xl blur-xl opacity-30 group-hover:opacity-50 transition-opacity duration-300`} />
+                <div className={`absolute inset-0 ${feature.gradientClass} rounded-3xl blur-xl opacity-30 group-hover:opacity-50 transition-opacity duration-300`} />
                 <Image
                   src={feature.image}
                   alt={feature.alt}
@@ -99,7 +99,7 @@ const Feature = () => {
                   height={600}
                   className="rounded-2xl shadow-2xl relative z-10 transform transition-all duration-500 group-hover:shadow-2xl"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent rounded-2xl z-20 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                <div className="absolute inset-0 feature-image-overlay rounded-2xl z-20 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
               </motion.div>
             </div>
 
@@ -112,11 +112,11 @@ const Feature = () => {
                 className="space-y-6"
               >
                 <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/5 border border-white/10 backdrop-blur-sm">
-                  <div className={`w-2 h-2 rounded-full bg-gradient-to-r ${feature.gradient}`} />
+                  <div className={`w-2 h-2 rounded-full ${feature.gradientClass.replace('feature-gradient', 'feature-dot')}`} />
                   <span className="text-sm font-medium text-gray-300">Feature {index + 1}</span>
                 </div>
 
-                <h3 className={`text-4xl sm:text-5xl font-bold bg-gradient-to-r ${feature.gradient} bg-clip-text text-transparent`}>
+                <h3 className={`text-4xl sm:text-5xl font-bold ${feature.gradientClass}`}>
                   {feature.title}
                 </h3>
 
@@ -134,7 +134,7 @@ const Feature = () => {
                       viewport={{ once: true }}
                       className="flex items-center gap-3 text-lg text-gray-400"
                     >
-                      <div className={`w-6 h-6 rounded-full bg-gradient-to-r ${feature.gradient} flex items-center justify-center`}>
+                      <div className={`w-6 h-6 rounded-full ${feature.gradientClass} flex items-center justify-center`}>
                         <div className="w-1.5 h-1.5 rounded-full bg-white" />
                       </div>
                       {item}
@@ -145,7 +145,7 @@ const Feature = () => {
                 <motion.button
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
-                  className={`bg-gradient-to-r ${feature.gradient} text-white font-semibold px-8 py-4 rounded-2xl transition-all duration-300 shadow-lg hover:shadow-xl mt-6`}
+                  className={`${feature.gradientClass} text-white font-semibold px-8 py-4 rounded-2xl transition-all duration-300 shadow-lg hover:shadow-xl mt-6`}
                 >
                   Learn More
                 </motion.button>
@@ -155,36 +155,73 @@ const Feature = () => {
         ))}
       </div>
 
-      {/* <motion.div
-        initial={{ opacity: 0 }}
-        whileInView={{ opacity: 1 }}
-        transition={{ duration: 1, delay: 0.5 }}
-        viewport={{ once: true }}
-        className="text-center mt-24"
-      >
-        <div className="bg-gradient-to-r from-rose-500/10 via-orange-400/10 to-amber-500/10 border border-white/10 rounded-3xl p-12 backdrop-blur-sm">
-          <h2 className="text-3xl sm:text-4xl font-bold mb-4">Ready to Experience Innovation?</h2>
-          <p className="text-xl text-gray-400 mb-8 max-w-2xl mx-auto">
-            Join millions of users who have already discovered the future of smartphone technology.
-          </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <motion.button
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              className="bg-gradient-to-r from-rose-500 to-orange-400 text-white font-semibold px-8 py-4 rounded-2xl transition-all duration-300 shadow-lg hover:shadow-rose-500/25"
-            >
-              Order Now
-            </motion.button>
-            <motion.button
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              className="border border-white/30 hover:border-white/50 text-white font-medium px-8 py-4 rounded-2xl transition-all duration-300 backdrop-blur-sm"
-            >
-              Watch Demo
-            </motion.button>
-          </div>
-        </div>
-      </motion.div> */}
+      <style jsx global>{`
+        .feature-main-title {
+          background: linear-gradient(to right, #ffffff, #fecaca, #fed7aa);
+          -webkit-background-clip: text;
+          background-clip: text;
+          color: transparent;
+        }
+        
+        .feature-gradient-1 {
+          background: linear-gradient(to right, #3b82f6, #06b6d4);
+          -webkit-background-clip: text;
+          background-clip: text;
+          color: transparent;
+        }
+        
+        .feature-gradient-2 {
+          background: linear-gradient(to right, #8b5cf6, #ec4899);
+          -webkit-background-clip: text;
+          background-clip: text;
+          color: transparent;
+        }
+        
+        .feature-gradient-3 {
+          background: linear-gradient(to right, #10b981, #10b981);
+          -webkit-background-clip: text;
+          background-clip: text;
+          color: transparent;
+        }
+        
+        .feature-gradient-4 {
+          background: linear-gradient(to right, #f97316, #ef4444);
+          -webkit-background-clip: text;
+          background-clip: text;
+          color: transparent;
+        }
+        
+        .feature-gradient-5 {
+          background: linear-gradient(to right, #6b7280, #6b7280);
+          -webkit-background-clip: text;
+          background-clip: text;
+          color: transparent;
+        }
+        
+        .feature-dot-1 {
+          background: linear-gradient(to right, #3b82f6, #06b6d4);
+        }
+        
+        .feature-dot-2 {
+          background: linear-gradient(to right, #8b5cf6, #ec4899);
+        }
+        
+        .feature-dot-3 {
+          background: linear-gradient(to right, #10b981, #10b981);
+        }
+        
+        .feature-dot-4 {
+          background: linear-gradient(to right, #f97316, #ef4444);
+        }
+        
+        .feature-dot-5 {
+          background: linear-gradient(to right, #6b7280, #6b7280);
+        }
+        
+        .feature-image-overlay {
+          background: linear-gradient(to top, #00000080, transparent);
+        }
+      `}</style>
     </section>
   );
 };

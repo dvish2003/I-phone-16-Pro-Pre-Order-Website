@@ -8,12 +8,11 @@ const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
 
-const navItems = [
-  { name: "Feature", href: "#feature" },
-  { name: "Specs", href: "#specs" },
-  { name: "Gallery", href: "#gallery" },
-];
-
+  const navItems = [
+    { name: "Feature", href: "#feature" },
+    { name: "Specs", href: "#specs" },
+    { name: "Gallery", href: "#gallery" },
+  ];
 
   useEffect(() => {
     const handleScroll = () => {
@@ -24,51 +23,55 @@ const navItems = [
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  const handleNavClick = () => {
+    setIsMenuOpen(false);
+  };
+
   return (
     <>
-       <motion.nav
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
+      <motion.nav
+        initial={{ opacity: 0, y: -20 }}
+        animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6, ease: "easeOut" }}
-        className={`fixed top-0 left-0 w-full z-[999] h-16 md:h-20 transition-all duration-300 ${
-          isScrolled ? "bg-black/40 backdrop-blur-lg" : "bg-transparent"
+        className={`fixed top-0 left-0 w-full z-50 h-16 md:h-20 transition-all duration-300 ${
+          isScrolled 
+            ? "bg-black/80 backdrop-blur-xl border-b border-white/10" 
+            : "bg-transparent"
         }`}
-        style={{
-          position: 'fixed',
-          top: 0,
-          left: 0,
-          right: 0
-        }}
       >
-
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between items-center py-4">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-full">
+          <div className="flex justify-between items-center h-full">
             <motion.div
               className="flex-shrink-0"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
             >
-              <Link href="/" className="flex items-center space-x-2 group">
+              <Link 
+                href="/" 
+                className="flex items-center space-x-2 group"
+                aria-label="Apple Home"
+              >
                 <Image
                   src="/icons/Apple_logo_white.svg"
                   alt="Apple Logo"
                   width={20}
                   height={20}
                   className="group-hover:scale-110 transition-transform duration-300"
+                  priority
                 />
               </Link>
             </motion.div>
 
-            <div className="hidden md:flex flex-col items-center">
+            <div className="hidden md:flex flex-col items-center absolute left-1/2 transform -translate-x-1/2">
               <motion.h1
                 initial={{ opacity: 0, y: -20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.3 }}
-                className="text-[20px] font-light tracking-widest text-gray-500/70 mb-2"
+                className="text-sm font-light tracking-widest text-gray-400 mb-1"
               >
-                iPhone 16 TITANIUM EDITION
+                iPhone 16 TITANIUM
               </motion.h1>
-              <ul className="flex space-x-12 text-[16px] text-gray-300/60">
+              <ul className="flex space-x-8 text-sm text-gray-300">
                 {navItems.map((item, index) => (
                   <motion.li
                     key={item.name}
@@ -78,13 +81,10 @@ const navItems = [
                   >
                     <Link
                       href={item.href}
-                      className="relative group hover:text-white transition-all duration-300 font-medium"
+                      className="relative group hover:text-white transition-all duration-300 font-medium px-2 py-1"
                     >
                       {item.name}
-                      <motion.span
-                        className="absolute bottom-0 left-0 w-0 h-px bg-gradient-to-r from-rose-500 to-orange-400 group-hover:w-full transition-all duration-300"
-                        whileHover={{ width: "100%" }}
-                      />
+                      <span className="nav-underline" />
                     </Link>
                   </motion.li>
                 ))}
@@ -98,11 +98,11 @@ const navItems = [
                 transition={{ delay: 0.6 }}
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
-                className="hidden md:block bg-primary text-primary-foreground hover:bg-primary/90 text-base sm:text-lg py-2 sm:py-2 px-8 sm:px-12 rounded-full transition-all"
+                className="hidden md:block"
               >
                 <Link
                   href="/pre-order"
-                  className="text-white text-[16px] font-semibold"
+                  className="bg-white text-black hover:bg-gray-100 text-sm font-medium py-2 px-6 rounded-full transition-all duration-300 shadow-lg hover:shadow-xl"
                 >
                   Pre Order
                 </Link>
@@ -113,6 +113,7 @@ const navItems = [
                 whileTap={{ scale: 0.9 }}
                 className="md:hidden text-white p-2 hover:bg-white/10 rounded-lg transition-colors duration-200"
                 onClick={() => setIsMenuOpen(true)}
+                aria-label="Open menu"
               >
                 <svg
                   className="w-6 h-6"
@@ -140,34 +141,29 @@ const navItems = [
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.3 }}
-            className="fixed inset-0 z-50"
+            className="fixed inset-0 z-50 md:hidden"
           >
             <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
-              className="absolute inset-0 bg-black/60 backdrop-blur-sm"
+              className="absolute inset-0 bg-black/70 backdrop-blur-sm"
               onClick={() => setIsMenuOpen(false)}
             />
 
             <motion.div
-              initial={{ x: -300, opacity: 0 }}
+              initial={{ x: "100%", opacity: 0 }}
               animate={{ x: 0, opacity: 1 }}
-              exit={{ x: -300, opacity: 0 }}
+              exit={{ x: "100%", opacity: 0 }}
               transition={{ type: "spring", damping: 25, stiffness: 200 }}
-              className="absolute top-0 left-0 w-80 h-full bg-gradient-to-b from-black via-gray-900 to-black border-r border-gray-800/50"
+              className="absolute top-0 right-0 w-80 h-full mobile-menu-bg border-l border-gray-800/50"
             >
               <div className="p-6 h-full flex flex-col">
-                <motion.div
-                  initial={{ y: -20, opacity: 0 }}
-                  animate={{ y: 0, opacity: 1 }}
-                  transition={{ delay: 0.1 }}
-                  className="flex items-center justify-between mb-12"
-                >
+                <div className="flex items-center justify-between mb-12">
                   <Link
                     href="/"
                     className="flex items-center space-x-2"
-                    onClick={() => setIsMenuOpen(false)}
+                    onClick={handleNavClick}
                   >
                     <Image
                       src="/icons/Apple_logo_white.svg"
@@ -181,6 +177,7 @@ const navItems = [
                     whileTap={{ scale: 0.9 }}
                     onClick={() => setIsMenuOpen(false)}
                     className="text-gray-400 hover:text-white p-2 hover:bg-white/10 rounded-lg transition-all duration-200"
+                    aria-label="Close menu"
                   >
                     <svg
                       className="w-6 h-6"
@@ -196,39 +193,38 @@ const navItems = [
                       />
                     </svg>
                   </motion.button>
-                </motion.div>
+                </div>
 
                 <motion.h2
                   initial={{ y: -10, opacity: 0 }}
                   animate={{ y: 0, opacity: 1 }}
-                  transition={{ delay: 0.2 }}
-                  className="text-gray-500/70 text-sm font-light tracking-widest mb-8 px-2"
+                  transition={{ delay: 0.1 }}
+                  className="text-gray-400 text-sm font-light tracking-widest mb-8 px-2"
                 >
-                  iPhone 16 TITANIUM EDITION
+                  iPhone 16 TITANIUM
                 </motion.h2>
 
-                <ul className="space-y-2 flex-1">
+                <ul className="space-y-1 flex-1">
                   {navItems.map((item, index) => (
                     <motion.li
                       key={item.name}
-                      initial={{ x: -20, opacity: 0 }}
+                      initial={{ x: 20, opacity: 0 }}
                       animate={{ x: 0, opacity: 1 }}
-                      transition={{ delay: 0.3 + index * 0.1 }}
+                      transition={{ delay: 0.2 + index * 0.1 }}
                     >
                       <Link
                         href={item.href}
-                        className="flex items-center text-white text-lg font-medium hover:bg-white/5 px-4 py-4 rounded-xl transition-all duration-300 group"
-                        onClick={() => setIsMenuOpen(false)}
+                        className="flex items-center text-white text-base font-medium hover:bg-white/5 px-4 py-4 rounded-xl transition-all duration-300 group"
+                        onClick={handleNavClick}
                       >
-                        <motion.span className="flex-1" whileHover={{ x: 5 }}>
+                        <span className="flex-1 group-hover:translate-x-2 transition-transform duration-300">
                           {item.name}
-                        </motion.span>
-                        <motion.svg
+                        </span>
+                        <svg
                           className="w-4 h-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
                           fill="none"
                           stroke="currentColor"
                           viewBox="0 0 24 24"
-                          whileHover={{ x: 2 }}
                         >
                           <path
                             strokeLinecap="round"
@@ -236,7 +232,7 @@ const navItems = [
                             strokeWidth={2}
                             d="M9 5l7 7-7 7"
                           />
-                        </motion.svg>
+                        </svg>
                       </Link>
                     </motion.li>
                   ))}
@@ -245,18 +241,17 @@ const navItems = [
                 <motion.div
                   initial={{ y: 20, opacity: 0 }}
                   animate={{ y: 0, opacity: 1 }}
-                  transition={{ delay: 0.6 }}
+                  transition={{ delay: 0.5 }}
                   className="pt-8 border-t border-gray-800/50"
                 >
                   <motion.div
-                    whileHover={{ scale: 1.05 }}
-                    whileTap={{ scale: 0.95 }}
-                    className="hidden md:block bg-primary text-primary-foreground hover:bg-primary/90 text-base sm:text-lg py-3 sm:py-3 px-8 sm:px-12 rounded-full transition-all"
+                    whileHover={{ scale: 1.02 }}
+                    whileTap={{ scale: 0.98 }}
                   >
                     <Link
                       href="/pre-order"
-                      className="text-white text-center font-semibold block"
-                      onClick={() => setIsMenuOpen(false)}
+                      className="bg-white text-black text-center font-medium py-3 px-6 rounded-full transition-all duration-300 block hover:bg-gray-100"
+                      onClick={handleNavClick}
                     >
                       Pre Order Now
                     </Link>
@@ -267,6 +262,26 @@ const navItems = [
           </motion.div>
         )}
       </AnimatePresence>
+
+      <style jsx global>{`
+        .nav-underline {
+          position: absolute;
+          bottom: 0;
+          left: 0;
+          width: 0;
+          height: 1px;
+          background: linear-gradient(to right, #f43f5e, #fb923c);
+          transition: width 0.3s ease;
+        }
+        
+        .group:hover .nav-underline {
+          width: 100%;
+        }
+        
+        .mobile-menu-bg {
+          background: linear-gradient(to bottom, #000000, #1f2937, #000000);
+        }
+      `}</style>
     </>
   );
 };

@@ -16,10 +16,10 @@ const Specs = () => {
   ];
 
   const colors = [
-    { name: "Natural Titanium", color: "bg-[#8B8680]" },
-    { name: "Blue Titanium", color: "bg-[#4A5568]" },
-    { name: "White Titanium", color: "bg-[#E5E7EB]" },
-    { name: "Black Titanium", color: "bg-[#1F2937]" },
+    { name: "Natural Titanium", color: "spec-color-1" },
+    { name: "Blue Titanium", color: "spec-color-2" },
+    { name: "White Titanium", color: "spec-color-3" },
+    { name: "Black Titanium", color: "spec-color-4" },
   ];
 
   return (
@@ -98,7 +98,7 @@ const Specs = () => {
                     whileHover={{ boxShadow: "0 12px 25px rgba(0,0,0,0.1)" }}
                   >
                     <motion.div
-                      className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent"
+                      className="spec-shine-overlay"
                       initial={{ x: "-100%" }}
                       whileHover={{ x: "100%" }}
                       transition={{ duration: 0.6 }}
@@ -121,6 +121,30 @@ const Specs = () => {
           </motion.div>
         </div>
       </div>
+
+      <style jsx global>{`
+        .spec-color-1 {
+          background: #8B8680;
+        }
+        
+        .spec-color-2 {
+          background: #4A5568;
+        }
+        
+        .spec-color-3 {
+          background: #E5E7EB;
+        }
+        
+        .spec-color-4 {
+          background: #1F2937;
+        }
+        
+        .spec-shine-overlay {
+          position: absolute;
+          inset: 0;
+          background: linear-gradient(90deg, transparent, #ffffff33, transparent);
+        }
+      `}</style>
     </section>
   );
 };

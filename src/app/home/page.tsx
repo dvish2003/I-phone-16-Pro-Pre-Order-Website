@@ -51,13 +51,13 @@ const Home = () => {
           "radial-gradient(circle at top, #000 0%, #0a0a0a 60%, #111 100%)",
       }}
     >
-      <div className="absolute inset-0 bg-gradient-to-b from-black via-rose-950/10 to-black/90 z-0" />
+      <div className="absolute inset-0 home-gradient-overlay z-0" />
 
       <div
         ref={proTextRef}
         className="absolute top-[15%] left-0 w-full text-center z-10 pointer-events-none"
       >
-        <h1 className="text-[30vw] sm:text-[22vw] md:text-[18vw] font-bold opacity-10 bg-gradient-to-b from-rose-800/60 to-transparent bg-clip-text text-transparent select-none">
+        <h1 className="text-[30vw] sm:text-[22vw] md:text-[18vw] font-bold opacity-10 pro-text-gradient select-none">
           PRO
         </h1>
       </div>
@@ -88,7 +88,7 @@ const Home = () => {
             initial={{ opacity: 0, y: 40 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
-            className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold bg-gradient-to-r from-white via-rose-200 to-orange-300 bg-clip-text text-transparent"
+            className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold home-title-gradient"
           >
             iPhone 16 Pro
           </motion.h1>
@@ -100,7 +100,7 @@ const Home = () => {
             className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold leading-tight"
           >
             Forged in{" "}
-            <span className="bg-gradient-to-r from-rose-300 via-orange-200 to-yellow-100 bg-clip-text text-transparent animate-gradient">
+            <span className="titanium-gradient">
               Titanium
             </span>
           </motion.h2>
@@ -125,7 +125,7 @@ const Home = () => {
             <motion.button
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
-              className="bg-gradient-to-r from-rose-500 to-orange-400 hover:from-rose-600 hover:to-orange-500 text-white font-semibold px-6 py-3 rounded-full shadow-lg transition-all duration-300"
+              className="pre-order-button text-white font-semibold px-6 py-3 rounded-full shadow-lg transition-all duration-300"
             >
               Pre-order Now
             </motion.button>
@@ -141,7 +141,7 @@ const Home = () => {
         </div>
       </div>
 
-      <div className="absolute bottom-0 left-0 w-full h-24 bg-gradient-to-t from-black to-transparent z-0" />
+      <div className="absolute bottom-0 left-0 w-full h-24 bottom-gradient z-0" />
 
       <style jsx global>{`
         :root {
@@ -154,6 +154,46 @@ const Home = () => {
           overflow-x: hidden;
           background: black;
         }
+        
+        .home-gradient-overlay {
+          background: linear-gradient(to bottom, #000000, #8813370a, #000000e6);
+        }
+        
+        .pro-text-gradient {
+          background: linear-gradient(to bottom, #9f123980, transparent);
+          -webkit-background-clip: text;
+          background-clip: text;
+          color: transparent;
+        }
+        
+        .home-title-gradient {
+          background: linear-gradient(to right, #ffffff, #fecaca, #fed7aa);
+          -webkit-background-clip: text;
+          background-clip: text;
+          color: transparent;
+        }
+        
+        .titanium-gradient {
+          background: linear-gradient(to right, #fda4af, #fed7aa, #fef3c7);
+          -webkit-background-clip: text;
+          background-clip: text;
+          color: transparent;
+          background-size: 200% 200%;
+          animation: gradient 3s ease infinite;
+        }
+        
+        .pre-order-button {
+          background: linear-gradient(to right, #f43f5e, #fb923c);
+        }
+        
+        .pre-order-button:hover {
+          background: linear-gradient(to right, #e11d48, #f97316);
+        }
+        
+        .bottom-gradient {
+          background: linear-gradient(to top, #000000, transparent);
+        }
+        
         @keyframes gradient {
           0% {
             background-position: 0% 50%;
@@ -164,10 +204,6 @@ const Home = () => {
           100% {
             background-position: 0% 50%;
           }
-        }
-        .animate-gradient {
-          background-size: 200% 200%;
-          animation: gradient 3s ease infinite;
         }
       `}</style>
     </section>
