@@ -32,7 +32,14 @@ function AppleSlug() {
         whileInView={{ opacity: 1, x: 0 }}
         transition={{ duration: 0.8, ease: "easeOut" }}
         viewport={{ once: true }}
-        className="text-4xl sm:text-5xl md:text-7xl font-bold leading-tight bg-gradient-to-r from-titanium via-accent to-primary bg-clip-text text-transparent"
+        className="text-4xl sm:text-5xl md:text-7xl font-bold leading-tight"
+        style={{
+          background: "linear-gradient(90deg, #878787, #007AFF, #34C759)",
+          WebkitBackgroundClip: "text",
+          WebkitTextFillColor: "transparent",
+          backgroundClip: "text",
+          color: "transparent"
+        }}
       >
         Apple iOS 26 <br className="hidden md:block" /> Release
       </motion.h1>
