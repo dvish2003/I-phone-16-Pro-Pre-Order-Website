@@ -9,49 +9,75 @@ const Feature = () => {
       image: "/image/_ (1).jpeg",
       alt: "titanium",
       title: "Aerospace-Grade Titanium",
-      description: "Crafted from the same alloy used in spacecraft, offering unparalleled strength-to-weight ratio.",
-      features: ["Lightweight yet incredibly durable", "Corrosion resistant", "Premium matte finish"],
-      gradientClass: "feature-gradient-1"
+      description:
+        "Crafted from the same alloy used in spacecraft, offering unparalleled strength-to-weight ratio.",
+      features: [
+        "Lightweight yet incredibly durable",
+        "Corrosion resistant",
+        "Premium matte finish",
+      ],
+      gradientClass: "feature-gradient-1",
+      imageClass: "feature-image-1",
     },
     {
       image: "/image/iPhone 16.jpeg",
       alt: "new look iphone",
       title: "Revolutionary Design",
-      description: "The thinnest and lightest Pro model ever, with an all-new contoured edge design.",
-      features: ["Ergonomic contoured edges", "Thinnest bezels in smartphone history", "Four stunning finishes"],
+      description:
+        "The thinnest and lightest Pro model ever, with an all-new contoured edge design.",
+      features: [
+        "Ergonomic contoured edges",
+        "Thinnest bezels in smartphone history",
+        "Four stunning finishes",
+      ],
       gradientClass: "feature-gradient-2",
-      reverse: true
+      imageClass: "feature-image-2",
+      reverse: true,
     },
     {
       image: "/image/How to enable Apple Intelligence on your iPhone.jpeg",
       alt: "apple intelligence",
       title: "Apple Intelligence",
-      description: "The most personal and powerful AI system, integrated throughout your iPhone.",
-      features: ["On-device processing", "Contextual awareness", "Personalized assistance"],
-      gradientClass: "feature-gradient-3"
+      description:
+        "The most personal and powerful AI system, integrated throughout your iPhone.",
+      features: [
+        "On-device processing",
+        "Contextual awareness",
+        "Personalized assistance",
+      ],
+      gradientClass: "feature-gradient-3",
+      imageClass: "feature-image-3",
     },
     {
       image: "/image/_.jpeg",
       alt: "A18 chip",
       title: "A18 Pro Chip",
-      description: "The most powerful chip ever in a smartphone, with breakthrough performance and efficiency.",
-      features: ["6-core GPU for pro graphics", "16-core Neural Engine", "Industry-leading efficiency"],
+      description:
+        "The most powerful chip ever in a smartphone, with breakthrough performance and efficiency.",
+      features: [
+        "6-core GPU for pro graphics",
+        "16-core Neural Engine",
+        "Industry-leading efficiency",
+      ],
       gradientClass: "feature-gradient-4",
-      reverse: true
+      imageClass: "feature-image-4",
+      reverse: true,
     },
     {
       image: "/image/cam.jpeg",
       alt: "cam system",
       title: "Pro Camera System",
-      description: "Our most advanced camera system with computational photography breakthroughs.",
+      description:
+        "Our most advanced camera system with computational photography breakthroughs.",
       features: ["48MP Main camera", "5x Telephoto zoom", "Photonic Engine"],
-      gradientClass: "feature-gradient-5"
-    }
+      gradientClass: "feature-gradient-5",
+      imageClass: "feature-image-5",
+    },
   ];
 
   return (
     <section className="min-h-screen flex flex-col items-center justify-center bg-black text-white py-20 px-4 sm:px-6 lg:px-8 overflow-hidden">
-      <motion.header 
+      <motion.header
         initial={{ opacity: 0, y: 50 }}
         whileInView={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8 }}
@@ -69,13 +95,14 @@ const Feature = () => {
           <br /> Excellence
         </h1>
         <p className="text-lg sm:text-xl text-gray-400 max-w-2xl mx-auto relative z-10">
-          Every detail meticulously crafted to deliver an unparalleled experience
+          Every detail meticulously crafted to deliver an unparalleled
+          experience
         </p>
       </motion.header>
 
       <div className="w-full max-w-7xl mx-auto space-y-32 lg:space-y-48">
         {features.map((feature, index) => (
-          <motion.div 
+          <motion.div
             key={index}
             initial={{ opacity: 0, y: 80 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -91,13 +118,15 @@ const Feature = () => {
                 transition={{ duration: 0.4 }}
                 className="relative group"
               >
-                <div className={`absolute inset-0 ${feature.gradientClass} rounded-3xl blur-xl opacity-30 group-hover:opacity-50 transition-opacity duration-300`} />
+                <div
+                  className={`absolute inset-0 ${feature.gradientClass}  rounded-3xl blur-xl opacity-30 group-hover:opacity-50 transition-opacity duration-300`}
+                />
                 <Image
                   src={feature.image}
                   alt={feature.alt}
                   width={600}
                   height={600}
-                  className="rounded-2xl shadow-2xl relative z-10 transform transition-all duration-500 group-hover:shadow-2xl"
+                  className={`rounded-2xl shadow-2xl relative z-10 ${feature.imageClass} transform transition-all duration-500 group-hover:shadow-2xl`}
                 />
                 <div className="absolute inset-0 feature-image-overlay rounded-2xl z-20 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
               </motion.div>
@@ -112,11 +141,20 @@ const Feature = () => {
                 className="space-y-6"
               >
                 <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/5 border border-white/10 backdrop-blur-sm">
-                  <div className={`w-2 h-2 rounded-full ${feature.gradientClass.replace('feature-gradient', 'feature-dot')}`} />
-                  <span className="text-sm font-medium text-gray-300">Feature {index + 1}</span>
+                  <div
+                    className={`w-2 h-2 rounded-full ${feature.gradientClass.replace(
+                      "feature-gradient",
+                      "feature-dot"
+                    )}`}
+                  />
+                  <span className="text-sm font-medium text-gray-300">
+                    Feature {index + 1}
+                  </span>
                 </div>
 
-                <h3 className={`text-4xl sm:text-5xl font-bold ${feature.gradientClass}`}>
+                <h3
+                  className={`text-4xl sm:text-5xl font-bold ${feature.gradientClass}`}
+                >
                   {feature.title}
                 </h3>
 
@@ -134,7 +172,9 @@ const Feature = () => {
                       viewport={{ once: true }}
                       className="flex items-center gap-3 text-lg text-gray-400"
                     >
-                      <div className={`w-6 h-6 rounded-full ${feature.gradientClass} flex items-center justify-center`}>
+                      <div
+                        className={`w-6 h-6 rounded-full ${feature.gradientClass} flex items-center justify-center`}
+                      >
                         <div className="w-1.5 h-1.5 rounded-full bg-white" />
                       </div>
                       {item}
@@ -162,62 +202,90 @@ const Feature = () => {
           background-clip: text;
           color: transparent;
         }
-        
+        .feature-image-1 {
+          box-shadow: 0 10px 30px -5px rgba(59, 130, 246, 0.3),
+            0 4px 15px -3px rgba(59, 130, 246, 0.2),
+            inset 0 1px 0 rgba(255, 255, 255, 0.1);
+        }
+
+        .feature-image-2 {
+          box-shadow: 0 10px 30px -5px rgba(139, 92, 246, 0.3),
+            0 4px 15px -3px rgba(139, 92, 246, 0.2),
+            inset 0 1px 0 rgba(255, 255, 255, 0.1);
+        }
+
+        .feature-image-3 {
+          box-shadow: 0 10px 30px -5px rgba(16, 185, 129, 0.3),
+            0 4px 15px -3px rgba(16, 185, 129, 0.2),
+            inset 0 1px 0 rgba(255, 255, 255, 0.1);
+        }
+
+        .feature-image-4 {
+          box-shadow: 0 10px 30px -5px rgba(249, 115, 22, 0.3),
+            0 4px 15px -3px rgba(249, 115, 22, 0.2),
+            inset 0 1px 0 rgba(255, 255, 255, 0.1);
+        }
+
+        .feature-image-5 {
+          box-shadow: 0 10px 30px -5px rgba(107, 114, 128, 0.3),
+            0 4px 15px -3px rgba(107, 114, 128, 0.2),
+            inset 0 1px 0 rgba(255, 255, 255, 0.1);
+        }
         .feature-gradient-1 {
           background: linear-gradient(to right, #3b82f6, #06b6d4);
           -webkit-background-clip: text;
           background-clip: text;
           color: transparent;
         }
-        
+
         .feature-gradient-2 {
           background: linear-gradient(to right, #8b5cf6, #ec4899);
           -webkit-background-clip: text;
           background-clip: text;
           color: transparent;
         }
-        
+
         .feature-gradient-3 {
           background: linear-gradient(to right, #10b981, #10b981);
           -webkit-background-clip: text;
           background-clip: text;
           color: transparent;
         }
-        
+
         .feature-gradient-4 {
           background: linear-gradient(to right, #f97316, #ef4444);
           -webkit-background-clip: text;
           background-clip: text;
           color: transparent;
         }
-        
+
         .feature-gradient-5 {
           background: linear-gradient(to right, #6b7280, #6b7280);
           -webkit-background-clip: text;
           background-clip: text;
           color: transparent;
         }
-        
+
         .feature-dot-1 {
           background: linear-gradient(to right, #3b82f6, #06b6d4);
         }
-        
+
         .feature-dot-2 {
           background: linear-gradient(to right, #8b5cf6, #ec4899);
         }
-        
+
         .feature-dot-3 {
           background: linear-gradient(to right, #10b981, #10b981);
         }
-        
+
         .feature-dot-4 {
           background: linear-gradient(to right, #f97316, #ef4444);
         }
-        
+
         .feature-dot-5 {
           background: linear-gradient(to right, #6b7280, #6b7280);
         }
-        
+
         .feature-image-overlay {
           background: linear-gradient(to top, #00000080, transparent);
         }
